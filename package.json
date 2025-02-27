@@ -1,0 +1,60 @@
+{
+  "name": "@builtwithjavascript/permissions",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Damiano Fusco",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/builtwithjavascript/permissions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/builtwithjavascript/permissions/issues"
+  },
+  "homepage": "https://github.com/builtwithjavascript/permissions#readme",
+  "keywords": [
+    "component, libraries, scripts, javascript, large scale apps, vue, react, svelte, nuxt, next, node"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build-types": "tsc src/index.ts --esModuleInterop --declaration --emitDeclarationOnly --outDir dist",
+    "build": "tsc --esModuleInterop && vite build && npm run build-types",
+    "pub": "npm publish --access public",
+    "test": "TESTING=true vitest run",
+    "test-watch": "TESTING=true vitest watch",
+    "pretty": "prettier -w \"./src/**/*.ts\"",
+    "version-patch": "npm run pretty; npm version patch -m \"Patch version\"",
+    "preversion": "npm run test",
+    "version": "npm run build",
+    "postversion": "git push"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.7"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/permissions.es.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/permissions.umd.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/permissions.umd.js",
+  "module": "./dist/permissions.es.js"
+}

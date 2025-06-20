@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { PermissionType, PermissionsBuilder } from '@/permissions'
-import { HasPermissionsArgs, PermissionsInfo, Security } from '@/security'
+import { IHasPermissionsArgs, IPermissionsInfo, Security } from '@/security'
 
 describe('Security', () => {
   // setup
@@ -17,10 +17,10 @@ describe('Security', () => {
       Items: builder.fromKeys(['View', 'Add']),
       Accounts: builder.fromKeys(['View'])
     }
-  } as PermissionsInfo)
+  } as IPermissionsInfo)
 
   describe('Domain: Items:', () => {
-    const params: HasPermissionsArgs = {
+    const params: IHasPermissionsArgs = {
       id: id,
       domain: 'Items',
       permissionType: PermissionType.View
@@ -48,7 +48,7 @@ describe('Security', () => {
   })
 
   describe('Domain: Accounts:', () => {
-    const params: HasPermissionsArgs = {
+    const params: IHasPermissionsArgs = {
       id: id,
       domain: 'Accounts',
       permissionType: PermissionType.View

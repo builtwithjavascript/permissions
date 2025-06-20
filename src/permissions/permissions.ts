@@ -3,7 +3,13 @@ import { IPermissionType, PermissionType } from './permission-type'
 /**
  * @name IPermissionsStatic
  * @description
- * TypeScript trick to declare methods for static classes through interface
+ * TypeScript trick to declare methods
+ * for static classes through interface.
+ * This allows us to define
+ * static methods on the Permissions class
+ * while still adhering to the interface.
+ * @see IPermissionType
+ * @see PermissionType
  */
 export interface IPermissionsStatic {
   hasPermission(permissionType: number, permissions: number): boolean
@@ -15,7 +21,17 @@ export interface IPermissions {}
 /**
  * @name Permissions
  * @description
- * Export our static Permissions instance
+ * Export our static Permissions instance.
+ * This class implements the IPermissions interface
+ * and provides methods to check permissions
+ * and extend permission types dynamically.
+ * @implements {IPermissions}
+ * @see IPermissionsStatic
+ * @see IPermissionType
+ * @see PermissionType
+ * @example
+ * const hasViewPermission = Permissions.hasPermission(PermissionType.View, userPermissions);
+ * const extendedPermissions = Permissions.extendTypes(['CustomPermission1', 'CustomPermission2']);
  */
 export const Permissions: IPermissionsStatic = class implements IPermissions {
   public static hasPermission(permissionType: number, permissions: number): boolean {
@@ -25,8 +41,22 @@ export const Permissions: IPermissionsStatic = class implements IPermissions {
   /**
    * @name extendTypes
    * @description
-   * Extends IPermissionType with additional properties with the correct values
-   * @param names The names of the new permission types to add
+   * Extends IPermissionType with additional properties with the correct values.
+   * This method allows you to add new permission types dynamically.
+   * It calculates the values for the new permission types based on the existing ones.
+   * The values are assigned as powers of 2, ensuring that they do not conflict with
+   * existing permission types.
+   * @implements {IPermissionsStatic}
+   * @returns {IPermissionType} A new IPermissionType object with the additional permission types added.
+   * @example
+   * const extendedPermissions = Permissions.extendTypes(['CustomPermission1', 'CustomPermission2']);
+   * // Now extendedPermissions will include CustomPermission1 and CustomPermission2
+   * // with values assigned as powers of 2 based on the existing PermissionType.
+   * @see IPermissionType
+   * @see PermissionType
+   * @param {string[]} names - The names of the new permission types to add.
+   * @returns {IPermissionType} A new IPermissionType object with the additional permission types added.
+   * @throws {Error} If the names array is empty or contains invalid names.
    */
   public static extendTypes(names: string[]): IPermissionType {
     // create an empty dictionary where to add additional custom permissions

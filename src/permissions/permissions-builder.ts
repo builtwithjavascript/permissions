@@ -3,6 +3,9 @@ import { IPermissionType } from './permission-type'
 /**
  * @name IPermissionsBuilder
  * @description
+ * Helper to build permissions values
+ * from specific keys, from a range of values,
+ * or by excluding specific keys.
  */
 export interface IPermissionsBuilder {
   fromKeys(keys: string[]): number
@@ -15,7 +18,18 @@ export interface IPermissionsBuilder {
  * @description
  * Implements IPermissionsBuilder helper functions
  * that can build permissions values from specific keys,
- * from a range of values, or by exluding specific keys
+ * from a range of values, or by exluding specific keys.
+ * @implements {IPermissionsBuilder}
+ * @param {IPermissionType} types - The permission types to use for building permissions.
+ * @returns {IPermissionsBuilder} An instance of PermissionsBuilder.
+ * @example
+ * const permissionsBuilder = new PermissionsBuilder(permissionTypes);
+ * const permissions = permissionsBuilder.fromKeys(['View', 'Add']);
+ * const permissionsExcluding = permissionsBuilder.byExclusion(['Delete']);
+ * const permissionsInRange = permissionsBuilder.fromRange(1, 3);
+ * @see IPermissionType
+ * @see IPermissionsBuilder
+ * @see https://example.com/permissions-builder
  */
 export class PermissionsBuilder implements IPermissionsBuilder {
   private types!: IPermissionType

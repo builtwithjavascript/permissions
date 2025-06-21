@@ -10,11 +10,11 @@
  * to combine permissions efficiently.
  * @interface IPermissionType
  */
-export interface IPermissionType {
-  readonly View: number
-  readonly Add: number
-  readonly Update: number
-  readonly Delete: number
+export interface IPermissionType extends Record<string, number> {
+  View: number
+  Add: number
+  Update: number
+  Delete: number
 }
 
 /**
@@ -31,9 +31,9 @@ export interface IPermissionType {
  * @type {IPermissionType}
  * @see IPermissionType
  */
-export const PermissionType: IPermissionType = Object.freeze({
+export const PermissionType: IPermissionType = {
   View: 1,
   Add: 2,
   Update: 4,
   Delete: 8
-})
+}

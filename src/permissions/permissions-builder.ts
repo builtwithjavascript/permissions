@@ -52,11 +52,8 @@ export class PermissionsBuilder implements IPermissionsBuilder {
   }
 
   public byExclusion(keysToExclude: string[]): number {
-    const types = this.types
-    type keyType = keyof typeof types
-
     const keys: string[] = Object.getOwnPropertyNames(this.types).filter(
-      (key) => keysToExclude.indexOf(key as keyType) === -1
+      (key) => keysToExclude.indexOf(key) === -1
     ) as string[]
     return this.fromKeys(keys)
   }

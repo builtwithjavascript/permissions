@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { PermissionType, PermissionsBuilder } from '@/permissions'
-import { IHasPermissionsArgs, IPermissionsInfo, Security } from '@/security'
+import { IHasPermissionsArgs, IPermissionInfo, Security } from '@/security'
 
 describe('Security', () => {
   // setup
@@ -17,7 +17,7 @@ describe('Security', () => {
       Items: builder.fromKeys(['View', 'Add']),
       Accounts: builder.fromKeys(['View'])
     }
-  } as IPermissionsInfo)
+  } as IPermissionInfo)
 
   describe('Domain: Items:', () => {
     const params: IHasPermissionsArgs = {

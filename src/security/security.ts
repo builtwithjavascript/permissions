@@ -10,7 +10,7 @@ import { Permissions } from '../permissions'
  * @property {string} domain - The domain for which to check permissions.
  * @property {number} permissionType - The type of permission to check.
  * @see ISecurity
- * @see IPermissionsInfo
+ * @see IPermissionInfo
  */
 export interface IHasPermissionsArgs {
   id: string
@@ -19,18 +19,18 @@ export interface IHasPermissionsArgs {
 }
 
 /**
- * @name IPermissionsInfo
+ * @name IPermissionInfo
  * @description
  * Interface for the permissions information associated with a user or role.
  * It includes the ID and a map of permissions for different domains.
- * @interface IPermissionsInfo
+ * @interface IPermissionInfo
  * @property {string} id - The ID of the user or role.
  * @property {Object} permissions - A map of domain names to permission values.
  * @property {number} permissions[domain] - The permission value for the specified domain.
  * @see ISecurity
  * @see IHasPermissionsArgs
  */
-export interface IPermissionsInfo {
+export interface IPermissionInfo {
   id: string
   permissions: { [key: string]: number }
 }
@@ -44,11 +44,11 @@ export interface IPermissionsInfo {
  * @property {function} setPermissionsInfo - Method to add permissions information for a user or role.
  * @property {function} hasPermissions - Method to check if a user has specific permissions on a domain.
  * @see IHasPermissionsArgs
- * @see IPermissionsInfo
+ * @see IPermissionInfo
  * @see Permissions
  */
 export interface ISecurity {
-  setPermissionsInfo(params: IPermissionsInfo): void
+  setPermissionsInfo(params: IPermissionInfo): void
   hasPermissions(params: IHasPermissionsArgs): boolean
 }
 
@@ -63,7 +63,7 @@ export interface ISecurity {
  * utilities for handling encryption, token validation, and other security-related tasks.
  * @implements {ISecurity}
  * @see IHasPermissionsArgs
- * @see IPermissionsInfo
+ * @see IPermissionInfo
  * @see Permissions
  * @example
  * const security = new Security();
@@ -86,7 +86,7 @@ export class Security implements ISecurity {
 
   constructor() {}
 
-  setPermissionsInfo(params: IPermissionsInfo) {
+  setPermissionsInfo(params: IPermissionInfo) {
     this.dataMap.set(params.id, params.permissions)
   }
 

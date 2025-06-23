@@ -11,7 +11,7 @@ describe('Security', () => {
   const id = 'test-user'
 
   // our user or role permissions
-  appSecurity.setPermissionsInfo({
+  appSecurity.setPermissionInfo({
     id: id,
     permissions: {
       Items: builder.fromKeys(['View', 'Add']),

@@ -41,14 +41,14 @@ export interface IPermissionInfo {
  * Interface for the security service that manages user permissions.
  * It provides methods to add permissions information and check if a user has specific permissions.
  * @interface ISecurity
- * @property {function} setPermissionsInfo - Method to add permissions information for a user or role.
+ * @property {function} setPermissionInfo - Method to add permissions information for a user or role.
  * @property {function} hasPermissions - Method to check if a user has specific permissions on a domain.
  * @see IHasPermissionsArgs
  * @see IPermissionInfo
  * @see Permissions
  */
 export interface ISecurity {
-  setPermissionsInfo(params: IPermissionInfo): void
+  setPermissionInfo(params: IPermissionInfo): void
   hasPermissions(params: IHasPermissionsArgs): boolean
 }
 
@@ -67,7 +67,7 @@ export interface ISecurity {
  * @see Permissions
  * @example
  * const security = new Security();
- * security.setPermissionsInfo({
+ * security.setPermissionInfo({
  *   id: 'user123',
  *   permissions: {
  *     Items: Permissions.fromKeys(['View', 'Add']),
@@ -86,7 +86,7 @@ export class Security implements ISecurity {
 
   constructor() {}
 
-  setPermissionsInfo(params: IPermissionInfo) {
+  setPermissionInfo(params: IPermissionInfo) {
     this.dataMap.set(params.id, params.permissions)
   }
 

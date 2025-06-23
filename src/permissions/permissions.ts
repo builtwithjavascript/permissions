@@ -1,4 +1,4 @@
-import { IPermissionType, PermissionType } from './permission-type'
+import { IPermissionType } from './permission-type'
 
 /**
  * @name IPermissionsStatic
@@ -13,7 +13,7 @@ import { IPermissionType, PermissionType } from './permission-type'
  */
 export interface IPermissionsStatic {
   hasPermission(permissionType: number, permissions: number): boolean
-  extendTypes(names: string[]): IPermissionType
+  extendTypes(permissionTypes: IPermissionType, names: string[]): IPermissionType
 }
 
 export interface IPermissions {}
@@ -58,16 +58,16 @@ export const Permissions: IPermissionsStatic = class implements IPermissions {
    * @returns {IPermissionType} A new IPermissionType object with the additional permission types added.
    * @throws {Error} If the names array is empty or contains invalid names.
    */
-  public static extendTypes(names: string[]): IPermissionType {
+  public static extendTypes(permissionTypes: IPermissionType, names: string[]): IPermissionType {
     // create an empty dictionary where to add additional custom permissions
     const additionalPermissions: { [key: string]: number } = {}
 
     // get keys
-    const keys: string[] = Object.keys(PermissionType)
+    const keys: string[] = Object.keys(permissionTypes)
     // check if base zero
-    const firstValue = (<any>PermissionType)[keys[0]]
+    const firstValue = permissionTypes[keys[0]]
 
-    let factor = Object.keys(PermissionType).length
+    let factor = keys.length
     if (firstValue === 0) {
       factor -= 1
     }
@@ -78,9 +78,9 @@ export const Permissions: IPermissionsStatic = class implements IPermissions {
       (additionalPermissions[name] = Math.pow(2, factor++))
     ])
 
-    // create union of both current PermissionType and the additionalPermissions
+    // create union of both current permissionTypes and the additionalPermissions
     const unionPermissionType: IPermissionType = Object.freeze({
-      ...PermissionType,
+      ...permissionTypes,
       ...additionalPermissions
     } as IPermissionType)
 

@@ -76,10 +76,13 @@ export interface YourAppIPermissionType extends IPermissionType {
 /**
  * Extend PermissionType with names matching your custom interface
  */
-export const YourAppPermissionType: YourAppIPermissionType = Permissions.extendTypes([
-  'Publish',
-  'Share',
-]) as YourAppIPermissionType
+export const YourAppPermissionType: YourAppIPermissionType = Permissions.extendTypes(
+  permissionTypes,
+  [
+    'Publish',
+    'Share',
+  ]
+) as YourAppIPermissionType
 ```
 
 

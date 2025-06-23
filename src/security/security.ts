@@ -1,18 +1,18 @@
 import { Permissions } from '../permissions'
 
 /**
- * @name IHasPermissionsArgs
+ * @name IHasPermissionArgs
  * @description
  * Interface for the arguments required to check permissions.
  * It includes the user or role ID, domain, and the type of permission to check.
- * @interface IHasPermissionsArgs
+ * @interface IHasPermissionArgs
  * @property {string} id - The ID of user or role.
  * @property {string} domain - The domain for which to check permissions.
  * @property {number} permissionType - The type of permission to check.
  * @see ISecurity
  * @see IPermissionInfo
  */
-export interface IHasPermissionsArgs {
+export interface IHasPermissionArgs {
   id: string
   domain: string
   permissionType: number
@@ -28,7 +28,7 @@ export interface IHasPermissionsArgs {
  * @property {Object} permissions - A map of domain names to permission values.
  * @property {number} permissions[domain] - The permission value for the specified domain.
  * @see ISecurity
- * @see IHasPermissionsArgs
+ * @see IHasPermissionArgs
  */
 export interface IPermissionInfo {
   id: string
@@ -43,13 +43,13 @@ export interface IPermissionInfo {
  * @interface ISecurity
  * @property {function} setPermissionInfo - Method to add permissions information for a user or role.
  * @property {function} hasPermissions - Method to check if a user has specific permissions on a domain.
- * @see IHasPermissionsArgs
+ * @see IHasPermissionArgs
  * @see IPermissionInfo
  * @see Permissions
  */
 export interface ISecurity {
   setPermissionInfo(params: IPermissionInfo): void
-  hasPermissions(params: IHasPermissionsArgs): boolean
+  hasPermissions(params: IHasPermissionArgs): boolean
 }
 
 /**
@@ -62,7 +62,7 @@ export interface ISecurity {
  * sensitive operations are only accessible to authorized users. It may also include
  * utilities for handling encryption, token validation, and other security-related tasks.
  * @implements {ISecurity}
- * @see IHasPermissionsArgs
+ * @see IHasPermissionArgs
  * @see IPermissionInfo
  * @see Permissions
  * @example
@@ -90,7 +90,7 @@ export class Security implements ISecurity {
     this.dataMap.set(params.id, params.permissions)
   }
 
-  hasPermissions(params: IHasPermissionsArgs): boolean {
+  hasPermissions(params: IHasPermissionArgs): boolean {
     const { id, domain, permissionType } = params
 
     // if our lookup contains data for this user

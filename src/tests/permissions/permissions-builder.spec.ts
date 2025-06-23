@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
-import { PermissionType, PermissionsBuilder } from '@/permissions'
+import { PermissionType, PermissionBuilder } from '@/permissions'
 
-describe('PermissionsBuilder (of PermissionType)', () => {
-  const builder = new PermissionsBuilder(PermissionType)
+describe('PermissionBuilder (of PermissionType)', () => {
+  const builder = new PermissionBuilder(PermissionType)
 
   describe('fromKeys', () => {
     it('should return expected value when includes [View, Add] only ', () => {

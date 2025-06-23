@@ -1,7 +1,7 @@
 import { IPermissionType } from './permission-type'
 
 /**
- * @name IPermissionsStatic
+ * @name IPermissionStatic
  * @description
  * TypeScript trick to declare methods
  * for static classes through interface.
@@ -11,7 +11,7 @@ import { IPermissionType } from './permission-type'
  * @see IPermissionType
  * @see PermissionType
  */
-export interface IPermissionsStatic {
+export interface IPermissionStatic {
   hasPermission(permissionType: number, permissions: number): boolean
   extendTypes(permissionTypes: IPermissionType, names: string[]): IPermissionType
 }
@@ -26,14 +26,14 @@ export interface IPermissions {}
  * and provides methods to check permissions
  * and extend permission types dynamically.
  * @implements {IPermissions}
- * @see IPermissionsStatic
+ * @see IPermissionStatic
  * @see IPermissionType
  * @see PermissionType
  * @example
  * const hasViewPermission = Permissions.hasPermission(PermissionType.View, userPermissions);
  * const extendedPermissions = Permissions.extendTypes(['CustomPermission1', 'CustomPermission2']);
  */
-export const Permissions: IPermissionsStatic = class implements IPermissions {
+export const Permissions: IPermissionStatic = class implements IPermissions {
   public static hasPermission(permissionType: number, permissions: number): boolean {
     return permissionType === (permissions & permissionType)
   }
@@ -46,7 +46,7 @@ export const Permissions: IPermissionsStatic = class implements IPermissions {
    * It calculates the values for the new permission types based on the existing ones.
    * The values are assigned as powers of 2, ensuring that they do not conflict with
    * existing permission types.
-   * @implements {IPermissionsStatic}
+   * @implements {IPermissionStatic}
    * @returns {IPermissionType} A new IPermissionType object with the additional permission types added.
    * @example
    * const extendedPermissions = Permissions.extendTypes(['CustomPermission1', 'CustomPermission2']);

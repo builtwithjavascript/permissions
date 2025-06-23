@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
-import { PermissionType, PermissionsBuilder } from '@/permissions'
-import { IHasPermissionsArgs, IPermissionInfo, Security } from '@/security'
+import { PermissionType, PermissionBuilder } from '@/permissions'
+import { IHasPermissionArgs, IPermissionInfo, Security } from '@/security'
 
 describe('Security', () => {
   // setup
   const appSecurity = new Security()
   // this is to help tests, but you would have the value stored in a db or alike
-  const builder = new PermissionsBuilder(PermissionType)
+  const builder = new PermissionBuilder(PermissionType)
 
   const id = 'test-user'
 
@@ -20,7 +20,7 @@ describe('Security', () => {
   } as IPermissionInfo)
 
   describe('Domain: Items:', () => {
-    const params: IHasPermissionsArgs = {
+    const params: IHasPermissionArgs = {
       id: id,
       domain: 'Items',
       permissionType: PermissionType.View
@@ -48,7 +48,7 @@ describe('Security', () => {
   })
 
   describe('Domain: Accounts:', () => {
-    const params: IHasPermissionsArgs = {
+    const params: IHasPermissionArgs = {
       id: id,
       domain: 'Accounts',
       permissionType: PermissionType.View

@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { PermissionType, Permissions, PermissionsBuilder } from '@/permissions'
+import { PermissionType, Permissions, PermissionBuilder } from '@/permissions'
 
 // save some types to better enforce TypeScript type checks within the unit tests
 //type IPermissionTypeKeyType = keyof IPermissionType
 
 describe('Permissions', () => {
-  const builder = new PermissionsBuilder(PermissionType)
+  const builder = new PermissionBuilder(PermissionType)
 
   describe('hasPermission', () => {
     it('should return true when permissions include View', () => {

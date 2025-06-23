@@ -17,7 +17,7 @@ npm install @builtwithjavascript/permissions
 ## 🧠 Core Concepts
 
  - **Permission**: A rule describing access to a resource and action (optionally with a condition). 
- - **PermissionsBuilder**: A utility to register and evaluate sets of permissions.
+ - **PermissionBuilder**: A utility to register and evaluate sets of permissions.
  - **Security**: A wrapper to centralize permission checks in an application.
 
 
@@ -27,7 +27,7 @@ npm install @builtwithjavascript/permissions
 1. **Define Your Own Permissions**
 Extend the base permission interface to define additional app-specific permissions:
 ```typescript
-import { Permission, PermissionsBuilder } from '@builtwithjavascript/permissions'
+import { Permission, PermissionBuilder } from '@builtwithjavascript/permissions'
 
 export interface YourAppPermission extends Permission {
   readonly Publish?: boolean
@@ -37,7 +37,7 @@ export interface YourAppPermission extends Permission {
 
 2. **Add Permissions**
 ```typescript
-const builder = new PermissionsBuilder()
+const builder = new PermissionBuilder()
 builder.add(
   { resource: 'article', action: 'edit' },
   { resource: 'article', action: 'publish', condition: (ctx) => ctx?.isAdmin }
@@ -98,7 +98,7 @@ interface Permission {
 }
 ```
 
-### PermissionsBuilder
+### PermissionBuilder
 
 - `add(...permissions: Permission[]): this`
    Adds one or more permissions.
@@ -110,7 +110,7 @@ interface Permission {
 ### Security
 
 - `isAllowed(permission: Permission, context?: any): boolean`
-   Delegates permission check to `PermissionsBuilder`.
+   Delegates permission check to `PermissionBuilder`.
 
   
 

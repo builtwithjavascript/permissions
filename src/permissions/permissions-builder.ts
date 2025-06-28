@@ -1,37 +1,37 @@
 import { IPermissionType } from './permission-type'
 
 /**
- * @name IPermissionsBuilder
+ * @name IPermissionBuilder
  * @description
  * Helper to build permissions values
  * from specific keys, from a range of values,
  * or by excluding specific keys.
  */
-export interface IPermissionsBuilder {
+export interface IPermissionBuilder {
   fromKeys(keys: string[]): number
   byExclusion(keysToExclude: string[]): number
   fromRange(fromValue: number, toValue: number): number
 }
 
 /**
- * @name PermissionsBuilder
+ * @name PermissionBuilder
  * @description
- * Implements IPermissionsBuilder helper functions
+ * Implements IPermissionBuilder helper functions
  * that can build permissions values from specific keys,
  * from a range of values, or by exluding specific keys.
- * @implements {IPermissionsBuilder}
+ * @implements {IPermissionBuilder}
  * @param {IPermissionType} types - The permission types to use for building permissions.
- * @returns {IPermissionsBuilder} An instance of PermissionsBuilder.
+ * @returns {IPermissionBuilder} An instance of PermissionBuilder.
  * @example
- * const permissionsBuilder = new PermissionsBuilder(permissionTypes);
- * const permissions = permissionsBuilder.fromKeys(['View', 'Add']);
- * const permissionsExcluding = permissionsBuilder.byExclusion(['Delete']);
- * const permissionsInRange = permissionsBuilder.fromRange(1, 3);
+ * const permissionBuilder = new PermissionBuilder(permissionTypes);
+ * const permissions = permissionBuilder.fromKeys(['View', 'Add']);
+ * const permissionExcluding = permissionBuilder.byExclusion(['Delete']);
+ * const permissionInRange = permissionBuilder.fromRange(1, 3);
  * @see IPermissionType
- * @see IPermissionsBuilder
+ * @see IPermissionBuilder
  * @see https://example.com/permissions-builder
  */
-export class PermissionsBuilder implements IPermissionsBuilder {
+export class PermissionBuilder implements IPermissionBuilder {
   private types!: IPermissionType
 
   constructor(types: IPermissionType) {
